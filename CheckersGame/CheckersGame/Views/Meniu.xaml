@@ -1,0 +1,29 @@
+﻿<Page x:Class="CheckersGame.Views.Meniu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CheckersGame.Views"
+      xmlns:vm="clr-namespace:CheckersGame.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="900"
+      Title="Meniu">
+
+    <Page.DataContext>
+        <vm:MeniuViewModel/>
+    </Page.DataContext>
+    <Grid Background="AntiqueWhite">
+        <TextBlock Text="Checkers Game" Style="{StaticResource HeaderTextBlockStyle}" Height="50" HorizontalAlignment="Center" Margin="0,90,0,310" />
+        <StackPanel Height="200" Width="210" HorizontalAlignment="Center" Margin="0,170,0,80">
+            <Button Content="New Game" Click="NewGameBtn_Click"/>
+            <Border Height="10"/>
+            <Button Content="Load Game" Click="LoadBtn_Click"/>
+            <Border Height="10"/>
+            <Button Content="Statictics" Click="StatisticsBtn_Click"/>
+            <Border Height="10"/>
+            <Button Content="About" Click="AboutBtn_Click_1"/>
+            <Border Height="10"/>
+            <!--<CheckBox Content="Allow multiple jumps"/>-->
+        </StackPanel>
+    </Grid>
+</Page>

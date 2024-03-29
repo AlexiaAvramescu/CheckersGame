@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CheckersGame.Model
+namespace CheckersGame.Models
 {
-    internal class Board
+    internal enum EType
     {
+        King,
+        Queen
     }
 }

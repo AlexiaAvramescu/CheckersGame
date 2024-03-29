@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CheckersGame.Model
+namespace CheckersGame.Models
 {
-    internal class Piece
+    internal enum EColor
     {
+        White,
+        Black
     }
 }

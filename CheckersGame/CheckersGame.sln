@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckersGame", "CheckersGame\CheckersGame.csproj", "{9D2F8DC2-4159-41D3-9656-E15CF95A946B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckersGame", "CheckersGame\CheckersGame.csproj", "{06AD8B90-4C58-4BBC-9F02-AF0DAE850E9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9D2F8DC2-4159-41D3-9656-E15CF95A946B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D2F8DC2-4159-41D3-9656-E15CF95A946B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D2F8DC2-4159-41D3-9656-E15CF95A946B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9D2F8DC2-4159-41D3-9656-E15CF95A946B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06AD8B90-4C58-4BBC-9F02-AF0DAE850E9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06AD8B90-4C58-4BBC-9F02-AF0DAE850E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06AD8B90-4C58-4BBC-9F02-AF0DAE850E9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06AD8B90-4C58-4BBC-9F02-AF0DAE850E9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {10DE1740-D7B3-44F1-97E4-A7936F211BF3}
+		SolutionGuid = {EFB0CADA-F204-4718-8680-3947B981356E}
 	EndGlobalSection
 EndGlobal
