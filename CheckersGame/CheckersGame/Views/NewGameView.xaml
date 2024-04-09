@@ -10,9 +10,24 @@
 
     <Grid Background="AntiqueWhite">
         <Button Content="&#x2190;" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34,31,0,0" Width="30" Height="30" FontSize="16" Click="BackBtn_Click"/>
-        <TextBlock Text="New Game" Style="{StaticResource HeaderTextBlockStyle}" Height="50" HorizontalAlignment="Center" Margin="0,57,0,343" />
-        <StackPanel HorizontalAlignment="Left" Height="40" Margin="108,185,0,275">
+        <TextBlock Text="New Game" Style="{StaticResource HeaderTextBlockStyle}" Height="50" HorizontalAlignment="Center" Margin="0,52,0,398" />
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Height="270" Margin="0,139,0,0">
+            <TextBlock Text="Game name:" Style="{StaticResource GlobalTextBlockStyle}"/>
+            <TextBox />
+            <Border Height="10"/>
+            <TextBlock Text="White player name:" Style="{StaticResource GlobalTextBlockStyle}"/>
+            <TextBox />
+            <Border Height="10"/>
+
+            <TextBlock Text="Black player name:" Style="{StaticResource GlobalTextBlockStyle}"/>
+            <TextBox />
+            <Border Height="10"/>
+
             <CheckBox Content="Allow multiple jumps"/>
+
+            <Button Content="Create game" />
+            <Border Height="10"/>
+            <Button Content="Load game"/>
         </StackPanel>
     </Grid>
 </Page>

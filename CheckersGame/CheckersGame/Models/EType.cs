@@ -8,6 +8,7 @@ namespace CheckersGame.Models
 {
     internal enum EType
     {
+        None,
         King,
         Queen
     }

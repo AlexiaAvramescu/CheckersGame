@@ -8,6 +8,7 @@ namespace CheckersGame.Models
 {
     internal enum EColor
     {
+        None,
         White,
         Black
     }

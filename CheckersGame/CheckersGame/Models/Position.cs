@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace CheckersGame.Models
 {
-    internal class Player
+    public struct Position
     {
-        public string Name {  get; set; }
-        public Player(string name)
-        {
-            Name = name;
-        }
+        int Line { get; set; }
+        int Column { get; set; }
+        Position(int line, int column) { Line = line; Column = column; }
     }
 }

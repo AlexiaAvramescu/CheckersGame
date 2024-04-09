@@ -56,11 +56,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\LoadCommand.cs" />
+    <Compile Include="Models\BlackKingMovement.cs" />
+    <Compile Include="Models\BlackQueenMovement.cs" />
     <Compile Include="Models\EColor.cs" />
     <Compile Include="Models\EType.cs" />
     <Compile Include="Models\Game.cs" />
-    <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\IMovement.cs" />
+    <Compile Include="Models\Position.cs" />
+    <Compile Include="Models\WhiteKingMovement.cs" />
+    <Compile Include="Models\WhiteQueenMovement.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\GameViewModel.cs" />
     <Compile Include="ViewModels\MeniuViewModel.cs" />
     <Compile Include="ViewModels\StatisticsViewModel.cs" />
     <Compile Include="Views\AboutView.xaml.cs">

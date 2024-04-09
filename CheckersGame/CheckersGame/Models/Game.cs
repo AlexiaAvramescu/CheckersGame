@@ -10,10 +10,19 @@ namespace CheckersGame.Models
     {
         public string Name { get; set; }
         public Board Board { get; set; }
-        public Player PlayerWhite { get; set; }
-        public Player PlayerBlack { get; set; }
+        public string PlayerWhite { get; set; }
+        public string PlayerBlack { get; set; }
         public bool MultipleJumps { get; set; }
         public Game() { }
+
+        public Game(string name, string whitePlayer, string blackPlayer, bool multipleJumps)
+        {
+            Name = name;
+            Board = new Board();
+            PlayerWhite = whitePlayer;
+            PlayerBlack = blackPlayer;
+            MultipleJumps = multipleJumps;
+        }
 
 
 
