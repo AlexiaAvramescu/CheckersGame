@@ -10,7 +10,6 @@ namespace CheckersGame.Models
     {
         const int kLines = 8;
         const int kCollumns = 8;
-
         public ObservableCollection<ObservableCollection<Piece>> Pieces { get; set; }
         public Board()
         {

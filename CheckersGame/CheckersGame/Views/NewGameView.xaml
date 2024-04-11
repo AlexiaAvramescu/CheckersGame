@@ -25,7 +25,7 @@
 
             <CheckBox Content="Allow multiple jumps"/>
 
-            <Button Content="Create game" />
+            <Button Content="Create game" Click="Button_Click"/>
             <Border Height="10"/>
             <Button Content="Load game"/>
         </StackPanel>

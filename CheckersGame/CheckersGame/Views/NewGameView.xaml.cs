@@ -30,5 +30,10 @@ namespace CheckersGame.Views
         {
             ((MainWindow)Application.Current.MainWindow).MainFrame.GoBack();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).MainFrame.Navigate(new GameView(this.DataContext));
+        }
     }
 }

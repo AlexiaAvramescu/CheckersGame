@@ -9,6 +9,14 @@ namespace CheckersGame.ViewModels
 {
     internal class GameViewModel: BaseViewModel
     {
-        public Game GameStatus { get; set; }
+        public Game Game { get; set; }
+        public Position SelectedPiece { get; set; }
+        public String CurrentPlayer {  get; set; }
+        public void MakeMove(int x, int y,  int toX, int toY) { }
+
+        public GameViewModel() { 
+            Game = new Game();
+        }
+
     }
 }

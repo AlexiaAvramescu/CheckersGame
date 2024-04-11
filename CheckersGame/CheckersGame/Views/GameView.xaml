@@ -4,14 +4,19 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CheckersGame.Views"
+      xmlns:vm="clr-namespace:CheckersGame.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="900"
       Title="GameView">
 
+    <Page.DataContext>
+        <vm:GameViewModel/>
+    </Page.DataContext>
+
     <Grid Background="AntiqueWhite">
         <Button Content="&#x2190;" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34,31,0,0" Width="30" Height="30" FontSize="16" Click="Button_Click"/>
         <TextBlock Text="WhitePlayer's turn" Style="{StaticResource GlobalTextBlockStyle}" FontWeight="Bold" Height="50" HorizontalAlignment="Left" Margin="340,46,0,354" />
-        <ItemsControl ItemsSource="{Binding Pieces}">
+        <ItemsControl ItemsSource="{Binding Game.Board.Pieces}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Rows="8" Columns="8"/>
@@ -19,8 +24,17 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Content="{Binding}" Command="{Binding DataContext.SquareClickCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                            CommandParameter="{Binding}"/>
+                    <Button Content="{Binding}" 
+                    Command="{Binding DataContext.SquareClickCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                    CommandParameter="{Binding}">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border BorderBrush="Black" BorderThickness="1">
+                                    <ContentPresenter/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
