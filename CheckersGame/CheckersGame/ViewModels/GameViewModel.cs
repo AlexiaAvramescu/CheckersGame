@@ -1,9 +1,11 @@
-﻿using CheckersGame.Models;
+﻿using CheckersGame.Commands;
+using CheckersGame.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace CheckersGame.ViewModels
 {
@@ -14,9 +16,13 @@ namespace CheckersGame.ViewModels
         public String CurrentPlayer {  get; set; }
         public void MakeMove(int x, int y,  int toX, int toY) { }
 
-        public GameViewModel() { 
+
+        public GameViewModel() {
             Game = new Game();
+           // SquareClickCommand = new LoadCommand();
         }
+
+        public ICommand SquareClickCommand { get; set; }
 
     }
 }

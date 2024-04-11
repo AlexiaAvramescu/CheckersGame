@@ -34,7 +34,7 @@ namespace CheckersGame.Views
         private void LoadBtn_Click(object sender, RoutedEventArgs e)
         {
             (DataContext as MeniuViewModel).LoadGameCommand();
-            ((MainWindow)Application.Current.MainWindow).MainFrame.Navigate(new GameView(this.DataContext));
+            ((MainWindow)Application.Current.MainWindow).MainFrame.Navigate(new GameView());
         }
 
         private void StatisticsBtn_Click(object sender, RoutedEventArgs e)

@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 
 namespace CheckersGame.Models
 {
-    internal class Game
+    public class Game
     {
         public string Name { get; set; }
         public Board Board { get; set; }
         public string PlayerWhite { get; set; }
         public string PlayerBlack { get; set; }
         public bool MultipleJumps { get; set; }
-        public Game() { }
+        public Game()
+        {
+        Board = new Board();
+    }
 
-        public Game(string name, string whitePlayer, string blackPlayer, bool multipleJumps)
+    public Game(string name, string whitePlayer, string blackPlayer, bool multipleJumps)
         {
             Name = name;
             Board = new Board();

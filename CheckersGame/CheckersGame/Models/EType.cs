@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CheckersGame.Models
 {
-    internal enum EType
+    public enum EType
     {
         None,
         King,

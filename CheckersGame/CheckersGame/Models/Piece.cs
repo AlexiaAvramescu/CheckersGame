@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CheckersGame.Models
 {
-    internal class Piece
+    public class Piece
     {
         public EColor Color { get; set; }
         public EType Type

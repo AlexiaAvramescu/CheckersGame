@@ -11,9 +11,9 @@ namespace CheckersGame.Commands
     internal class LoadCommand : ICommand
     {
         private MeniuViewModel MeniuVM {  get; set; }
-        public LoadCommand(MeniuViewModel meniuVM) 
+        public LoadCommand(/*MeniuViewModel meniuVM*/) 
         {
-            MeniuVM = meniuVM;
+            //MeniuVM = meniuVM;
         }
 
         public bool CanExecute(object parameter)

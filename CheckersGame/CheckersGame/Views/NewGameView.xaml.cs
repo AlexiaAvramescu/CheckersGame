@@ -33,7 +33,7 @@ namespace CheckersGame.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).MainFrame.Navigate(new GameView(this.DataContext));
+            ((MainWindow)Application.Current.MainWindow).MainFrame.Navigate(new GameView());
         }
     }
 }

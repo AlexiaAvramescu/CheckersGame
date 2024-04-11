@@ -20,10 +20,10 @@ namespace CheckersGame.Views
     /// </summary>
     public partial class GameView : Page
     {
-        public GameView(object dContext)
+        public GameView()
         {
             InitializeComponent();
-            DataContext = dContext;
+            //DataContext = dContext;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
