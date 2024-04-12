@@ -15,9 +15,9 @@
 
     <Grid Background="AntiqueWhite">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="73*"/>
+            <RowDefinition Height="15*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -26,9 +26,9 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Column="1" Grid.Row="0" Text="WW" Style="{StaticResource GlobalTextBlockStyle}" FontWeight="Bold" Height="50" HorizontalAlignment="Left"/>
-        <Button Content="&#x2190;" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34,31,0,0" Width="30" Height="30" FontSize="16" Click="Button_Click"/>
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding Game.Board.Pieces}"  Grid.Column="1">
+        <TextBlock Grid.Row="0" Text="{Binding CurrentPlayer}" Style="{StaticResource GlobalTextBlockStyle}" FontWeight="Bold" HorizontalAlignment="Left" Margin="243,14,0,15" Width="0"/>
+        <Button Content="&#x2190;" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34,31,0,0" Width="30" Height="30" FontSize="16" Click="Button_Click" Grid.RowSpan="2"/>
+        <ItemsControl ItemsSource="{Binding Game.Board.Pieces}" Grid.Row="1" Grid.ColumnSpan="3" Margin="243,0,243,0">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid HorizontalAlignment="Center" VerticalAlignment="Center" Rows="8" Columns="8"/>
@@ -37,7 +37,7 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Button 
-                            Content="{Binding}" 
+                        Content="{Binding}" 
                         Command="{Binding DataContext.SquareClickCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
                         CommandParameter="{Binding}" Width="40">
                         <Button.Template >
@@ -45,7 +45,7 @@
                                 <Border BorderBrush="Black"
                                        Width="40"
                                         Height="40"
-                                            BorderThickness="3">
+                                        BorderThickness="3">
                                     <ContentPresenter/>
                                 </Border>
                             </ControlTemplate>

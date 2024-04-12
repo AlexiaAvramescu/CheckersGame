@@ -10,15 +10,12 @@ namespace CheckersGame.Models
     {
         const int kLines = 8;
         const int kCollumns = 8;
-        //public ObservableCollection<ObservableCollection<Piece>> Pieces { get; set; }
         public ObservableCollection<Piece> Pieces { get; set; }
         public Board()
         {
-            //Pieces = new ObservableCollection<ObservableCollection<Piece>>();
             Pieces = new ObservableCollection<Piece>();
             for (int i = 0; i < kLines; i++)
             {
-                //Pieces.Add(new ObservableCollection<Piece>());
                 for (int j = 0; j < kCollumns; j++)
                 {
                     if (i == 0 || i == 1)
@@ -26,7 +23,7 @@ namespace CheckersGame.Models
                     else if (i == 6 || i == 7)
                         Pieces.Add(new Piece(EColor.Black, EType.Queen));
                     else
-                    Pieces.Add(new Piece());
+                        Pieces.Add(new Piece());
                 }
             }
         }

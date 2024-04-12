@@ -4,6 +4,6 @@ namespace CheckersGame.Models
 {
     public interface IMovement
     {
-        Collection<Position> GetPosibleMovements(Position pos);
+        Collection<int> GetPosibleMovements(ObservableCollection<Piece> board, Position fromPos, bool MultipleJumps);
     }
 }

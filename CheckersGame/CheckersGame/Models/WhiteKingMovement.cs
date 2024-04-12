@@ -9,7 +9,7 @@ namespace CheckersGame.Models
 {
     internal class WhiteKingMovement : IMovement
     {
-        public Collection<Position> GetPosibleMovements(Position pos)
+        public Collection<int> GetPosibleMovements(ObservableCollection<Piece> board, Position fromPos, bool multipleJumps)
         {
             throw new NotImplementedException();
         }
