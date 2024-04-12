@@ -26,7 +26,7 @@ namespace CheckersGame.Models
                 if (futurePosIndex < 0 || futurePosIndex >= board.Count)
                     continue;
                 if (board[futurePosIndex].IsNull) possiblePos.Add(futurePosIndex);
-                if (board[futurePosIndex].Color == EColor.White)
+                if (board[futurePosIndex].Color == EColor.Black)
                 {
                     int capturePosIndex = GetIndex(fromPos.Line + forwardRowOffset * 2, fromPos.Column + columnOffset * 2);
                     if (capturePosIndex < 0 || capturePosIndex >= board.Count)

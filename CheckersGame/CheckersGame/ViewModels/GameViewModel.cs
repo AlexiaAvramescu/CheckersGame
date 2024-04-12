@@ -9,20 +9,35 @@ using System.Windows.Input;
 
 namespace CheckersGame.ViewModels
 {
-    internal class GameViewModel: BaseViewModel
+    internal class GameViewModel : BaseViewModel
     {
-        public Game Game { get; set; }
-        public Position SelectedPiece { get; set; }
-        public String CurrentPlayer {  get; set; }
-        public void MakeMove(int x, int y,  int toX, int toY) { }
-
-
-        public GameViewModel() {
+        public GameViewModel()
+        {
             Game = new Game();
-           // SquareClickCommand = new LoadCommand();
+            SquareClickCommand = new RelayCommand(SquareClick);
+            CurrentPlayer = EColor.Black;
+            SelectedPiece = new Piece();
         }
-
+        public Game Game { get; set; }
+        public Piece SelectedPiece { get; set; }
+        public EColor CurrentPlayer { get; set; }
+        public void MakeMove(int x, int y, int toX, int toY) { }
         public ICommand SquareClickCommand { get; set; }
+        public void SquareClick(object parameter)
+        {
+            var piece = parameter as Piece;
+
+            if(piece != null )
+            {
+                if(!piece.IsNull && SelectedPiece.IsNull && piece.Color == CurrentPlayer)
+                {
+                    SelectedPiece = piece;
+                }
+                else if(!SelectedPiece.IsNull && piece.IsNull) 
+                {
+                }
+            }
+        }
 
     }
 }

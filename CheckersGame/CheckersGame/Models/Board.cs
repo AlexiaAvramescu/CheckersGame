@@ -18,14 +18,15 @@ namespace CheckersGame.Models
             {
                 for (int j = 0; j < kCollumns; j++)
                 {
-                    if (i == 0 || i == 1)
-                        Pieces.Add(new Piece(EColor.White, EType.Queen));
-                    else if (i == 6 || i == 7)
-                        Pieces.Add(new Piece(EColor.Black, EType.Queen));
-                    else
+                    if (i == 0 && j % 2 == 0 || i == 1 && j % 2 == 1)
+                        Pieces.Add(new Piece(EColor.White, EType.Queen, i, j));
+                    else if (i == 6 && j % 2 == 1 || i == 7 && j % 2 == 0)
+                        Pieces.Add(new Piece(EColor.Black, EType.Queen, i, j));
+                    else 
                         Pieces.Add(new Piece());
                 }
             }
+            Piece piece = new Piece();
         }
 
     }

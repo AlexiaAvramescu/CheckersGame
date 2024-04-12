@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:CheckersGame.Views"
       xmlns:vm="clr-namespace:CheckersGame.ViewModels"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="900"
+      d:DesignHeight="600" d:DesignWidth="1000"
       Title="GameView">
 
     <Page.DataContext>
@@ -14,39 +14,91 @@
     </Page.DataContext>
 
     <Grid Background="AntiqueWhite">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="12*"/>
-            <RowDefinition Height="73*"/>
-            <RowDefinition Height="15*"/>
-        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding CurrentPlayer}" Style="{StaticResource GlobalTextBlockStyle}" FontWeight="Bold" HorizontalAlignment="Left"  Width="160" Margin="457,27,0,534"/>
+        <Button Content="&#x2190;" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34,31,0,0" Width="30" Height="30" FontSize="16" Click="Button_Click"/>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="1.7*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
-        <TextBlock Grid.Row="0" Text="{Binding CurrentPlayer}" Style="{StaticResource GlobalTextBlockStyle}" FontWeight="Bold" HorizontalAlignment="Left" Margin="243,14,0,15" Width="0"/>
-        <Button Content="&#x2190;" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34,31,0,0" Width="30" Height="30" FontSize="16" Click="Button_Click" Grid.RowSpan="2"/>
-        <ItemsControl ItemsSource="{Binding Game.Board.Pieces}" Grid.Row="1" Grid.ColumnSpan="3" Margin="243,0,243,0">
+        <ItemsControl
+            ItemsSource="{Binding Game.Board.Pieces}" 
+            Background="AntiqueWhite"
+            BorderThickness="2"
+            BorderBrush="Black" Margin="232,75,203,71"
+            >
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <UniformGrid HorizontalAlignment="Center" VerticalAlignment="Center" Rows="8" Columns="8"/>
+                    <UniformGrid Rows="8" Columns="8"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button 
-                        Content="{Binding}" 
-                        Command="{Binding DataContext.SquareClickCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
-                        CommandParameter="{Binding}" Width="40">
-                        <Button.Template >
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border BorderBrush="Black"
-                                       Width="40"
-                                        Height="40"
-                                        BorderThickness="3">
-                                    <ContentPresenter/>
+                    <Button Command="{Binding DataContext.SquareClickCommand, 
+                        RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                    CommandParameter="{Binding}" Height="60" Width="60">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border Width="45"
+                                            Height="45"
+                                            >
+                                    <ContentControl>
+                                        <ContentControl.Style>
+                                            <Style TargetType="ContentControl">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding CheckerType}" Value="WhiteQueen">
+                                                        <Setter Property="Content">
+                                                            <Setter.Value>
+                                                                <Ellipse Fill="White"
+                                                                         Width="45"
+                                                                         Height="45"
+                                                                         HorizontalAlignment="Center"
+                                                                         VerticalAlignment="Center"
+                                                                    />
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </DataTrigger>
+
+                                                    <DataTrigger Binding="{Binding CheckerType}" Value="BlackQueen">
+                                                        <Setter Property="Content">
+                                                            <Setter.Value>
+                                                                <Ellipse Fill="Black"
+                                                                     Width="45"
+                                                                     Height="45"
+                                                                     HorizontalAlignment="Center"
+                                                                     VerticalAlignment="Center"
+                                                                />
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </DataTrigger>
+
+                                                    <DataTrigger Binding="{Binding CheckerType}" Value="BlackKing">
+                                                        <Setter Property="Content">
+                                                            <Setter.Value>
+                                                                <Canvas Width="100" Height="100" Margin="3 0 0 0">
+                                                                    <Ellipse Fill="Black" Width="35" Height="35" Canvas.Left="12.5" Canvas.Top="13"/>
+                                                                    <Polygon Fill="Gold" Points="32.5,20 47.5,20 40,5"/>
+                                                                    <Polygon Fill="Gold" Points="22.5,20 37.5,20 30,5"/>
+                                                                    <Polygon Fill="Gold" Points="12.5,20 27.5,20 20,5"/>
+                                                                </Canvas>
+
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </DataTrigger>
+
+                                                    <DataTrigger Binding="{Binding CheckerType}" Value="WhiteKing">
+                                                        <Setter Property="Content">
+                                                            <Setter.Value>
+                                                                <Canvas Width="100" Height="100" Margin="3 0 0 0">
+                                                                    <Ellipse Fill="Brown" Width="35" Height="35" Canvas.Left="12.5" Canvas.Top="13"/>
+                                                                    <Polygon Fill="Gold" Points="32.5,20 47.5,20 40,5"/>
+                                                                    <Polygon Fill="Gold" Points="22.5,20 37.5,20 30,5"/>
+                                                                    <Polygon Fill="Gold" Points="12.5,20 27.5,20 20,5"/>
+                                                                </Canvas>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </DataTrigger>
+
+                                                </Style.Triggers>
+                                            </Style>
+                                        </ContentControl.Style>
+                                    </ContentControl>
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>

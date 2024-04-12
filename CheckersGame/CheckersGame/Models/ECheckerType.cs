@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace CheckersGame.Models
 {
-    public enum EColor
+    public enum ECheckerType
     {
-        None,
-        White,
-        Black,
+        None = 0,
+        WhiteQueen,
+        WhiteKing,
+        BlackQueen,
+        BlackKing
     }
 }
