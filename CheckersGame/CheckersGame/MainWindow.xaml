@@ -8,5 +8,6 @@
         Title="MainWindow" Height="600" Width="1000">
     <Grid>
         <Frame Name="MainFrame" Source="/Views/Meniu.xaml" NavigationUIVisibility="Hidden" />
+        
     </Grid>
 </Window>

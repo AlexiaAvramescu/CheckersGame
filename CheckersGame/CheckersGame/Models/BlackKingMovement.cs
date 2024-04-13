@@ -14,7 +14,7 @@ namespace CheckersGame.Models
             Collection<int> possiblePos = new Collection<int>();
             int fromIndex = GetIndex(fromPos.Line, fromPos.Column);
 
-            if (fromIndex < 0 || fromIndex >= 8)
+            if (fromIndex < 0 || fromIndex >= board.Count)
                 return possiblePos;
 
             int[] forwardRowOffsets = { -1, 1 };

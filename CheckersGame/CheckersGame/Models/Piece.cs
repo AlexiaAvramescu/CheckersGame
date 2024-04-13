@@ -16,11 +16,13 @@ namespace CheckersGame.Models
         public ECheckerType CheckerType { get; set; }
         public IMovement Movement { get; set; }
 
-        public Piece()
+        public Piece(int line, int column)
         {
             Color = EColor.None;
             Type = EType.None;
             IsNull = true;
+            Line = line;    
+            Column = column;
         }
         public Piece(EColor color, EType type, int line, int column)
         {
@@ -65,21 +67,13 @@ namespace CheckersGame.Models
             IsNull = true;
         }
 
-        public void MoveTo(Position pos)
+        public void MoveTo(Piece destiantion)
         {
-            Line = pos.Line;
-            Column = pos.Column;
-
-            if (Color == EColor.White && Line == 7)
-            {
-                Type = EType.King;
-                Movement = new WhiteKingMovement();
-            }
-            else if (Color == EColor.Black && Line == 0)
-            {
-                Type = EType.King;
-                Movement = new BlackKingMovement();
-            }
+            destiantion.Color = Color;
+            destiantion.Type = Type;
+            destiantion.CheckerType = CheckerType;
+            destiantion.Movement = Movement;
+            destiantion.IsNull = false;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace CheckersGame.Models
             Collection<int> possiblePos = new Collection<int>();
             int fromIndex = GetIndex(fromPos.Line, fromPos.Column);
 
-            if (fromIndex < 0 || fromIndex >= 8)
+            if (fromIndex < 0 || fromIndex >= board.Count)
                 return possiblePos;
 
             int forwardRowOffset = 1;
@@ -25,7 +25,11 @@ namespace CheckersGame.Models
                 int futurePosIndex = GetIndex(fromPos.Line + forwardRowOffset, fromPos.Column + columnOffset);
                 if (futurePosIndex < 0 || futurePosIndex >= board.Count)
                     continue;
-                if (board[futurePosIndex].IsNull) possiblePos.Add(futurePosIndex);
+                if (board[futurePosIndex].IsNull)
+                {
+                    possiblePos.Add(futurePosIndex);
+                    continue;
+                }
                 if (board[futurePosIndex].Color == EColor.Black)
                 {
                     int capturePosIndex = GetIndex(fromPos.Line + forwardRowOffset * 2, fromPos.Column + columnOffset * 2);
