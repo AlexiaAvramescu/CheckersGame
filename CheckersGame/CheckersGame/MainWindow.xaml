@@ -33,13 +33,13 @@
             <CheckBox  x:Name="allowMultipleJumpsCheckBox" Content="Allow multiple jumps" IsChecked="{Binding Game.MultipleJumps}"  FontSize="16"/>
         </StackPanel>
 
-        <Label Content="{Binding CurrentPlayer}" FontSize="40" FontWeight="ExtraBold" Height="67" Width="148" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="503,50,0,0" RenderTransformOrigin="0.575,0.821"/>
+        <Label Content="{Binding Game.CurrentPlayer}" FontSize="40" FontWeight="ExtraBold" Height="67" Width="148" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="503,50,0,0" RenderTransformOrigin="0.575,0.821"/>
 
         <StackPanel Width="300" Height="500" HorizontalAlignment="Right" Margin="0,125,30,109">
             <Button Command="{Binding ChangeTurnCommand}" Content="Change turn"  Style="{StaticResource CustomButtonStyle}" Height="30" Width="100" HorizontalAlignment="Left" IsEnabled="{Binding ElementName=allowMultipleJumpsCheckBox, Path=IsChecked}"/>
             <Border Height="30"/>
             <Label Content="Selected Piece: " FontSize="20" FontWeight="Bold" Width="300" HorizontalAlignment="Right" />
-            <Label Content="{Binding SelectedPiece}" FontSize="20" Width="300" HorizontalAlignment="Right" />
+            <Label Content="{Binding Game.SelectedPiece}" FontSize="20" Width="300" HorizontalAlignment="Right" />
         </StackPanel>
 
         <ItemsControl

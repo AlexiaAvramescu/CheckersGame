@@ -17,6 +17,11 @@ namespace CheckersGame.Models
         public int WhitePiecesCount { get; set; }
         public Board()
         {
+            Initialize();
+        }
+
+        public void Initialize()
+        {
             Pieces = new ObservableCollection<Piece>();
             for (int i = 0; i < kLines; i++)
             {
@@ -34,7 +39,6 @@ namespace CheckersGame.Models
             BlackPiecesCount = kNumberPiecces;
             WhitePiecesCount = kNumberPiecces;
         }
-
         public bool MakeMove(Piece pieceToMove, Piece destination, bool firstMoveMade, ref bool lastMoveCapture)
         {
             if (Math.Abs(destination.Line - pieceToMove.Line) == 1 && !firstMoveMade)
