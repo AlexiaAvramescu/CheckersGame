@@ -9,7 +9,7 @@ namespace CheckersGame.Models
 {
     internal class WhiteKingMovement : IMovement
     {
-        public Collection<int> GetPosibleMovements(ObservableCollection<Piece> board, Position fromPos, bool multipleJumps)
+        public Collection<int> GetPosibleMovements(ObservableCollection<Piece> board, Position fromPos)
         {
             Collection<int> possiblePos = new Collection<int>();
             int fromIndex = GetIndex(fromPos.Line, fromPos.Column);
@@ -34,16 +34,7 @@ namespace CheckersGame.Models
                         if (capturePosIndex < 0 || capturePosIndex >= board.Count)
                             continue;
                         if (board[capturePosIndex].IsNull)
-                        {
                             possiblePos.Add(capturePosIndex);
-                            if (multipleJumps)
-                            {
-                                Collection<int> subsequentMoves = GetPosibleMovements(board, GetPosition(capturePosIndex), true);
-
-                                foreach (int move in subsequentMoves)
-                                    possiblePos.Add(move);
-                            }
-                        }
                     }
                 }
             }

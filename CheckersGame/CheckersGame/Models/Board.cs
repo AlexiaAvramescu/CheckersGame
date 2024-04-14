@@ -35,15 +35,19 @@ namespace CheckersGame.Models
             WhitePiecesCount = kNumberPiecces;
         }
 
-        public void MakeMove(Piece pieceToMove, Piece destination)
+        public bool MakeMove(Piece pieceToMove, Piece destination, bool firstMoveMade, ref bool lastMoveCapture)
         {
-            if (Math.Abs(destination.Line - pieceToMove.Line) == 1)
+            if (Math.Abs(destination.Line - pieceToMove.Line) == 1 && !firstMoveMade)
             {
                 pieceToMove.MoveTo(destination);
                 pieceToMove.Clear();
+                lastMoveCapture = false;
+                return true;
             }
-            else
+            else if (Math.Abs(destination.Line - pieceToMove.Line) == 2)
             {
+                if (firstMoveMade && !lastMoveCapture)
+                    return false;
                 pieceToMove.MoveTo(destination);
                 int capturedRow = (destination.Line + pieceToMove.Line) / 2;
                 int capturedCol = (destination.Column + pieceToMove.Column) / 2;
@@ -55,7 +59,12 @@ namespace CheckersGame.Models
                     BlackPiecesCount--;
 
                 Pieces[capturedIndex].Clear();
+                pieceToMove.Clear();
+                if (!firstMoveMade)
+                    lastMoveCapture = true;
+                return true;
             }
+            return false;
         }
 
     }

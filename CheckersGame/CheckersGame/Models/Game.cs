@@ -17,6 +17,7 @@ namespace CheckersGame.Models
         public Game()
         {
             Board = new Board();
+            MultipleJumps = false;
         }
 
         public Game(string name, string whitePlayer, string blackPlayer, bool multipleJumps)
@@ -28,14 +29,15 @@ namespace CheckersGame.Models
             MultipleJumps = multipleJumps;
         }
 
-        public void MakeMove(Piece pieceToMove, Piece destination)
+        public bool MakeMove(Piece pieceToMove, Piece destination, bool firstMoveMade, ref bool firstMoveCapture)
         {
-            Collection<int> possiblePositions = pieceToMove.Movement.GetPosibleMovements(Board.Pieces, new Position(pieceToMove.Line, pieceToMove.Column), MultipleJumps);
-            Collection<int> eva = Board.Pieces[21].Movement.GetPosibleMovements(Board.Pieces, new Position(2, 5), MultipleJumps);
+            Collection<int> possiblePositions = pieceToMove.Movement.GetPosibleMovements(Board.Pieces, new Position(pieceToMove.Line, pieceToMove.Column));
+            
             int destinationIndex = destination.Line * 8 + destination.Column;
+            
             if (!possiblePositions.Contains(destinationIndex))
-                return;
-            Board.MakeMove(pieceToMove, destination);
+                return false;
+            return Board.MakeMove(pieceToMove, destination, firstMoveMade, ref firstMoveCapture);
         }
 
     }

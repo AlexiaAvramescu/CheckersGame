@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:CheckersGame"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Style TargetType="Button">
+        <Style TargetType="Button" x:Key="CustomButtonStyle">
             <Setter Property="Background" Value="#915634"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Width" Value="120"/>
@@ -16,9 +16,19 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                        <Border x:Name="Border"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="5">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="#CCCCCC"/>
+                                <!-- Set the disabled background color here -->
+                                <Setter Property="Foreground" Value="#666666"/>
+                                <!-- Optionally, set the disabled foreground color -->
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -39,10 +49,6 @@
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="Foreground" Value="#915634"/>
         </Style>
-        <Style TargetType="CheckBox">
-            <Setter Property="FontSize" Value="18"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-        </Style>
+        
     </Application.Resources>
 </Application>
