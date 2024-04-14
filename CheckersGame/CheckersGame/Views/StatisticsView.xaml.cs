@@ -19,9 +19,10 @@ namespace CheckersGame.Views
     /// </summary>
     public partial class StatisticsView : Window
     {
-        public StatisticsView()
+        public StatisticsView(object dataContext)
         {
             InitializeComponent();
+            DataContext = dataContext;
         }
     }
 }

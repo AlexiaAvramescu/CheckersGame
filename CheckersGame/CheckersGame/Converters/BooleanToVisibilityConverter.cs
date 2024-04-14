@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows;
 
-namespace CheckersGame
+namespace CheckersGame.Converter
 {
     public class BooleanToVisibilityConverter : IValueConverter
     {

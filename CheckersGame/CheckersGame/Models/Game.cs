@@ -18,9 +18,15 @@ namespace CheckersGame.Models
         private Piece _selectedPiece;
         private bool _multipleJumps;
         private bool _isGameOver;
-
+        private bool _notStarted;
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public bool NotStarted
+        {
+            get { return _notStarted; }
+            set { _notStarted = value; OnPropertyChanged(nameof(NotStarted)); }
+        }
 
         public bool FirstMoveMade { get; set; }
         private bool FirstMoveCapture { get; set; }
@@ -51,14 +57,24 @@ namespace CheckersGame.Models
             }
         }
         public Board Board { get; set; }
-        public bool MultipleJumps { get; set; }
-        public Game()
+        public bool MultipleJumps
         {
-            Board = new Board();
-            MultipleJumps = false;
+            get { return _multipleJumps; }
+            set
+            {
+                _multipleJumps = value;
+            }
+        }
+
+        public Game() { }
+        public Game(bool multipleJumps)
+        {
+            Board = new Board(1);
+            MultipleJumps = multipleJumps;
             CurrentPlayer = EColor.Black;
             SelectedPiece = new Piece(-1, -1);
             IsGameOver = false;
+            NotStarted = true;
             FirstMoveMade = false;
             FirstMoveCapture = false;
         }
@@ -94,6 +110,7 @@ namespace CheckersGame.Models
         }
         private bool MakeMove(Piece pieceToMove, Piece destination, bool firstMoveMade, ref bool firstMoveCapture)
         {
+            if(NotStarted) NotStarted = false;
             Collection<int> possiblePositions = pieceToMove.Movement.GetPosibleMovements(Board.Pieces, new Position(pieceToMove.Line, pieceToMove.Column));
 
             int destinationIndex = destination.Line * 8 + destination.Column;
@@ -116,11 +133,27 @@ namespace CheckersGame.Models
         public void Restart()
         {
             Board.Initialize();
+            MultipleJumps = false;
+            CurrentPlayer = EColor.Black;
+            SelectedPiece = new Piece(-1, -1);
+            IsGameOver = false;
+            FirstMoveMade = false;
+            FirstMoveCapture = false;
+        }
+
+        public void SetPieceMovement()
+        {
+            Board.SetPieceMovement();
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            throw new NotImplementedException();
+            info.AddValue(nameof(CurrentPlayer), CurrentPlayer);
+            info.AddValue(nameof(FirstMoveMade), FirstMoveMade);
+            info.AddValue(nameof(SelectedPiece), SelectedPiece);
+            info.AddValue(nameof(MultipleJumps), MultipleJumps);
+            info.AddValue(nameof(IsGameOver), IsGameOver);
+            info.AddValue(nameof(Board), Board);
         }
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

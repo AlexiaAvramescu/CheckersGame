@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CheckersGame.Models
 {
-    public class Board
+    public class Board : ISerializable
     {
         const int kLines = 8;
         const int kCollumns = 8;
@@ -15,7 +17,9 @@ namespace CheckersGame.Models
 
         public int BlackPiecesCount { get; set; }
         public int WhitePiecesCount { get; set; }
-        public Board()
+        [JsonConstructor]
+        private Board() { }
+        public Board(int dummy)
         {
             Initialize();
         }
@@ -69,6 +73,21 @@ namespace CheckersGame.Models
                 return true;
             }
             return false;
+        }
+
+        public void SetPieceMovement()
+        {
+            foreach (var piece in Pieces) 
+            {
+                piece.SetMovement();
+            }
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue(nameof(Pieces), Pieces);
+            info.AddValue(nameof(BlackPiecesCount), BlackPiecesCount);
+            info.AddValue(nameof(WhitePiecesCount), WhitePiecesCount);
         }
 
     }

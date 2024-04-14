@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CheckersGame.Models
 {
-    public class Piece : INotifyPropertyChanged
+    public class Piece : INotifyPropertyChanged, ISerializable
     {
 
         private EColor _color;
@@ -54,8 +56,10 @@ namespace CheckersGame.Models
         public int Line { get; set; }
         public int Column { get; set; }
         public bool IsDark { get; set; }
+        [JsonIgnore]
         public IMovement Movement { get; set; }
 
+        public Piece() { }
         public Piece(int line, int column)
         {
             Color = EColor.None;
@@ -136,10 +140,42 @@ namespace CheckersGame.Models
             }
         }
 
+        public void SetMovement()
+        {
+            switch (CheckerType)
+            {
+                case ECheckerType.None:
+                    break;
+                case ECheckerType.WhiteQueen:
+                    Movement = new WhiteQueenMovement();
+                        break;
+                case ECheckerType.WhiteKing:
+                    Movement = new WhiteKingMovement();
+                    break;
+                case ECheckerType.BlackQueen:
+                    Movement = new BlackQueenMovement();
+                    break;
+                case ECheckerType.BlackKing:
+                    Movement = new BlackKingMovement();
+                    break;
+            }
+        }
+
         public override string ToString()
         {
             if (IsNull) return "No piece selected.";
             return $"Piece - Color: {Color}, Type: {Type}, \n CheckerType: {CheckerType},  \n Position: ({Line}, {Column})";
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue(nameof(Color), Color);
+            info.AddValue(nameof(Type), Type);
+            info.AddValue(nameof(CheckerType), CheckerType);
+            info.AddValue(nameof(Line), Line);
+            info.AddValue(nameof(Column), Column);
+            info.AddValue(nameof(IsDark), IsDark);
+            info.AddValue(nameof(IsNull), IsNull);
         }
     }
 }

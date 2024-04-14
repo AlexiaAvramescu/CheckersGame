@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CheckersGame"
         xmlns:vm="clr-namespace:CheckersGame.ViewModels"
+        xmlns:conv="clr-namespace:CheckersGame.Converter"
         mc:Ignorable="d"
         Title="MainWindow" Height="750" Width="1200">
 
@@ -13,8 +14,8 @@
     </Window.DataContext>
 
     <Window.Resources>
-        <local:BooleanToBrushConverter x:Key="BooleanToBrushConverter"/>
-        <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <conv:BooleanToBrushConverter x:Key="BooleanToBrushConverter"/>
+        <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Window.Resources>
     
 
@@ -30,7 +31,7 @@
             <Border Height="10"/>
             <Button Command="{Binding ShowAboutCommand}" Content="About"  Style="{StaticResource CustomButtonStyle}" HorizontalAlignment="Left" Height="30" Width="100" />
             <Border Height="10"/>
-            <CheckBox  x:Name="allowMultipleJumpsCheckBox" Content="Allow multiple jumps" IsChecked="{Binding Game.MultipleJumps}"  FontSize="16"/>
+            <CheckBox  x:Name="allowMultipleJumpsCheckBox" Content="Allow multiple jumps" IsChecked="{Binding Game.MultipleJumps}" IsEnabled="{Binding Game.NotStarted}" FontSize="16"/>
         </StackPanel>
 
         <Label Content="{Binding Game.CurrentPlayer}" FontSize="40" FontWeight="ExtraBold" Height="67" Width="148" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="503,50,0,0" RenderTransformOrigin="0.575,0.821"/>
@@ -144,7 +145,7 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <Grid Background="Black" Opacity="0.7" Visibility="{Binding IsGameOver, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <Grid Background="Black" Opacity="0.7" Visibility="{Binding Game.IsGameOver, Converter={StaticResource BooleanToVisibilityConverter}}">
             <TextBlock Text="Game Over" FontSize="36" Foreground="Red" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,273,0,0" />
             <Button Command="{Binding StartNewGameCommand}" Content="Start new game" Style="{StaticResource CustomButtonStyle}" Background="Red" Height="40" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>

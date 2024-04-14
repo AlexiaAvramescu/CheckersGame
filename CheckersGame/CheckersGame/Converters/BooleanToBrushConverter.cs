@@ -8,7 +8,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows;
 
-namespace CheckersGame
+namespace CheckersGame.Converter
 {
     public class BooleanToBrushConverter : IValueConverter
     {

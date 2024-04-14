@@ -59,9 +59,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BooleanToBrushConverter.cs" />
-    <Compile Include="BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\BooleanToBrushConverter.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Models\Statistics.cs" />
+    <Compile Include="Services\FileManager.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
     <Compile Include="ViewModels\StatisticsViewModel.cs" />

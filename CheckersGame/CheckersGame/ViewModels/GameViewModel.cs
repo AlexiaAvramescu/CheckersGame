@@ -1,25 +1,35 @@
 ﻿using CheckersGame.Commands;
 using CheckersGame.Models;
+using CheckersGame.Services;
 using CheckersGame.Views;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Effects;
 
 namespace CheckersGame.ViewModels
 {
-    internal class GameViewModel : BaseViewModel, ISerializable
+    internal class GameViewModel : BaseViewModel
     {
         public GameViewModel()
         {
-            Game = new Game();
+            FileService = new FileManager("game.json", "preferences.json");
+
+            bool multipleJumps = FileService.LoadPreferences<bool>();
+
+            Statistics = FileService.LoadData<Statistics>("statistics.json");
+            if (Statistics == null) { Statistics = new Statistics(true); }
+
+            Game = new Game(multipleJumps);
 
             SquareClickCommand = new RelayCommand(SquareClick);
             LoadGameCommand = new RelayCommand(LoadGame);
@@ -31,9 +41,16 @@ namespace CheckersGame.ViewModels
         }
 
         private Game _game;
+        private FileManager _fileService;
+        private Statistics _statistics;
+        public Game Game
+        {
+            get { return _game; }
+            set { _game = value; OnPropertyChanged(nameof(Game)); }
+        }
+        public FileManager FileService { get; set; }
 
-        public Game Game { get; set; }
-
+        public Statistics Statistics { get; set; }
         public ICommand SquareClickCommand { get; set; }
         public ICommand LoadGameCommand { get; set; }
         public ICommand SaveGameCommand { get; set; }
@@ -49,6 +66,15 @@ namespace CheckersGame.ViewModels
             if (piece != null)
                 Game.OnPieceClicked(piece);
 
+            if (Game.IsGameOver)
+            {
+                Statistics.GamesPlayed += 1;
+                if (Game.Board.BlackPiecesCount == 0)
+                    Statistics.WhiteWins += 1;
+                else
+                    Statistics.BlackWins += 1;
+                FileService.SaveData<Statistics>(Statistics, "statistics.json");
+            }
         }
 
         public void ChangeTurn(object parameter)
@@ -58,24 +84,21 @@ namespace CheckersGame.ViewModels
 
         private void LoadGame(object parameter)
         {
-            int ceva = 1;
+            Game newGame = FileService.LoadData<Game>("game.json");
+            if (newGame == null)
+            {
+                MessageBox.Show("Load failed.");
+                return;
+            }
+            Game = newGame;
+            Game.SetPieceMovement();
         }
         private void SaveGame(object parameter)
         {
-            string filePath = "game.json";
-
-            try
-            {
-                //string jsonData = JsonSerializer.Serialize(Game, new JsonSerializerOptions { WriteIndented = true });
-
-                //File.WriteAllText(filePath, jsonData);
-
-                Console.WriteLine("Game saved successfully.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error saving game: {ex.Message}");
-            }
+            if (FileService.SaveData<Game>(Game, "game.jsom"))
+                MessageBox.Show("Game Saved.");
+            else
+                MessageBox.Show("Game failed to save.");
         }
 
         private void ShowAboout(object parameter)
@@ -85,17 +108,13 @@ namespace CheckersGame.ViewModels
         }
         private void ShowStatistics(object parameter)
         {
-            StatisticsView statisticsView = new StatisticsView();
+            StatisticsViewModel statisticsVM = new StatisticsViewModel(Statistics);
+            StatisticsView statisticsView = new StatisticsView(statisticsVM);
             statisticsView.Show();
         }
         private void StartNewGame(object parameter)
         {
             Game.Restart();
-        }
-
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            throw new NotImplementedException();
         }
     }
 }
